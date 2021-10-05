@@ -3,7 +3,8 @@ import gradio as gr
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 x_train = x_train / 255.0, 
 x_test = x_test / 255.0
-print("---------------------------",tf.__version__,"-------------------------------------------")
+# print("---------------------------",tf.__version__,"-------------------------------------------")
+# print("--------------------------------------",gr.__version__)
 mo=tf.keras.models.load_model('cnn_model.h5')
 #print(mo.predict(x_train[0]).tolist()[0])
 def classify(image):
