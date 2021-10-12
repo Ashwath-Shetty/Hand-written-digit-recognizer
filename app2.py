@@ -1,6 +1,15 @@
 import tensorflow as tf
 import gradio as gr
 import numpy as np
+#import warnings
+#import logging
+# tf.get_logger().setLevel(logging.ERROR) 
+# import logging
+# logging.getLogger("tensorflow").setLevel(logging.WARNING)
+# warnings.simplefilter("ignore")
+# import os
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+#tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 x_train = x_train / 255.0, 
 x_test = x_test / 255.0
@@ -117,18 +126,18 @@ def classify(image):
     image=image/255.0
     prediction = mo.predict(image).flatten()
     #key=np.argmax(prediction,axis = 1) 
-    print("-----------------------e",mo.predict(image).shape)
-    print("latest------------",prediction.shape)
-    print("you-latest")
+    # print("-----------------------e",mo.predict(image).shape)
+    # print("latest------------",prediction.shape)
+    # print("you-latest")
     #return {str(i): prediction[i] for i in range(26)}
-    print({inv_map[i]: float(prediction[i]) for i in range(0,94)})
+    #print({inv_map[i]: float(prediction[i]) for i in range(0,94)})
     return {inv_map[i]: float(prediction[i]) for i in range(0,94)}
     
 # #sketchpad = gr.inputs.Sketchpad()
 label = gr.outputs.Label(num_top_classes=3,label='Prediction')
 # #interface = gr.Interface(classify, "sketchpad", "label", live=True, capture_session=True)
 desc="Draw any single character on the canvas to predict. for e.x: a, 1, @ etc."
-ar="Input can be - Any Alphabets(A-Z or a-z), Numbers(0-9), Any Symbols and Special Characters available on computer keyboard(for e.x: @, ], # etc.) "
-gr.Interface(fn=classify, inputs="sketchpad", outputs=label,live=True, capture_session=True,title="Character Predictor",description=desc,article=ar).launch(share=True,debug=True)
+ar="Input can be - Any Alphabets(A-Z or a-z), Numbers(0-9), Any Symbols and Special Characters available on computer keyboard(for e.x: @, ], # etc.)"
+gr.Interface(fn=classify, inputs="sketchpad", outputs=label,live=True,title="Character Predictor",description=desc,article=ar).launch(share=True)
 #interface.launch(share=True)
 #gr.Interface(fn=recognize_digit, inputs="sketchpad", outputs="label").launch()
