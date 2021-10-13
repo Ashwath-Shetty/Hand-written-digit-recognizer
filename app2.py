@@ -136,8 +136,8 @@ def classify(image):
 # #sketchpad = gr.inputs.Sketchpad()
 label = gr.outputs.Label(num_top_classes=3,label='Prediction')
 # #interface = gr.Interface(classify, "sketchpad", "label", live=True, capture_session=True)
-desc="Draw any single character on the canvas to predict. for e.x: a, 1, @ etc."
-ar="Currently 94 characters are recognizable including - Alphabets(A-Z or a-z), Numbers(0-9), Any Symbols and Special Characters(for e.x: @, ], # etc.). Note: Use Computer for the better experience."
+desc="Draw any single character on the canvas to predict. for e.x: A, 1, @ etc."
+ar="Currently 94 characters are recognizable including - Alphabets(A-Z or a-z), Numbers(0-9), Any Symbols and Special Characters(for e.x: @, ], # etc.).<b> <br>Note: Use Computer for the better experience.</b>"
 gr.Interface(fn=classify, inputs="sketchpad", outputs=label,live=True,title="Character Predictor",description=desc,article=ar,capture_session=True).launch()
 #interface.launch(share=True)
 #gr.Interface(fn=recognize_digit, inputs="sketchpad", outputs="label").launch()
